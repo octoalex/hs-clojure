@@ -36,8 +36,8 @@
                  [:div {:class "form-group"}
                   [:label {:for "gender"} "Пол"]
                   [:select {:class "form-control" :required "required" :name "gender"}
-                   [:option (if (= true (:gender patient)) (assoc {:value "1"} :selected "selected") {:value "1"}) "Мужской"]
-                   [:option (if (= false (:gender patient)) (assoc {:value "0"} :selected "selected") {:value "0"}) "Женский" ]
+                   [:option (if (= 1 (:gender patient)) (assoc {:value 1} :selected "selected") {:value 1}) "Мужской"]
+                   [:option (if (= 0 (:gender patient)) (assoc {:value 0} :selected "selected") {:value 0}) "Женский" ]
                    ]]
                  [:div {:class "form-group"}
                   [:label {:for "birthday"} "День рождения"]
@@ -56,12 +56,12 @@
      (map
       (fn [patient] 
            [:tr
-            [:td (h (:id patient))]
-            [:td (h (:full_name patient))] 
-            [:td (if (= "true" (h (:gender patient))) "Мужской" "Женский")] 
-            [:td (h (:birthday patient))] 
-            [:td (h (:address patient))] 
-            [:td (h (:policy_number patient))]
+            [:td (:id patient)]
+            [:td (:full_name patient)]
+            [:td (if (= 1 (:gender patient)) "Мужской" "Женский")] 
+            [:td (:birthday patient)] 
+            [:td (:address patient)] 
+            [:td (:policy_number patient)]
             [:td [:a {:class "btn btn-warning" :href (str "/edit/"(h (:id patient)))} "Редактировать"]]
             [:td [:a {:class "btn btn-danger" :onclick (str "return confirmDelete('/delete/"(h (:id patient))"');") :href (str "/delete/"(h (:id patient)))} "Удалить"]]])
       patients)])

@@ -12,7 +12,7 @@
     (h/include-css "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css")]
    [:body
     [:div {:id "header"}
-     [:a {:href "/"} [:h1 {:class "container"} "HealthSamurai"]]
+     [:a {:href "/patients"} [:h1 {:class "container"} "HealthSamurai"]]
      ]
     [:div {:id "content" :class "container mt-5"} body]
     (h/include-js "/js/main.js")]))
