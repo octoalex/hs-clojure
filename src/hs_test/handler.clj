@@ -5,10 +5,10 @@
              [ring.middleware.cors :refer [wrap-cors]]
              ))
 (reset! db-state connection)
+
 (def app
   (->
    #'app-routes
    (wrap-defaults api-defaults)
-    (wrap-cors :access-control-allow-origin [#".*"]
-               :access-control-allow-methods [:get :post]))
-   )
+   (wrap-cors :access-control-allow-origin [#".*"]
+              :access-control-allow-methods [:get :post])))

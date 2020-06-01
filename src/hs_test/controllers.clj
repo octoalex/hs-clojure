@@ -44,7 +44,7 @@
      (if (not-empty (get-in request [:form-params "patient-id"]))
        (do
          (db/save-patient conn (get-in request [:form-params "patient-id"]) patient)
-         (redirect "/patients"))
+         (redirect "/"))
       (db/create conn patient))
      (redirect "/")))
 

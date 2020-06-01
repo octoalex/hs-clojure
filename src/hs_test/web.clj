@@ -7,7 +7,8 @@
             [ring.middleware.cors :refer [wrap-cors]])
   (:gen-class))
 
-(reset! routes/db-state schema/connection)
+(reset! routes/db-state schema/connection-test)
+
 (defroutes routes
   #'routes/app-routes)
 

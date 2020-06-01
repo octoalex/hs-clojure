@@ -38,7 +38,7 @@
 
 
 (defn all [conn]
-  (into [] (sql/query conn ["select * from patients order by id desc"])))
+  (into [] (sql/query conn ["select id,full_name,gender,birthday,address,policy_number from patients order by id desc"])))
 
 (defn create [conn patient]
   (sql/insert! conn :patients patient))
