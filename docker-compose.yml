@@ -1,0 +1,29 @@
+version: '3.0'
+services:
+  postgres:
+    restart: 'always'
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_MULTIPLE_DATABASES=${DB_NAME},${DB_TEST_NAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+        - ./deploy:/docker-entrypoint-initdb.d
+    image: 'postgres:alpine'
+    ports:
+      - 5432:5432
+  patientsapp:
+    links:
+      - postgres
+    restart: 'always'
+    ports:
+      - '3000:3000'
+    environment:
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=postgres
+      - DB_NAME=${DB_NAME}
+      - DB_TEST_NAME=${DB_TEST_NAME}
+      - DB_USER=${DB_PASSWORD}
+      
+    build:
+      context: .
+      dockerfile: Dockerfile

@@ -2,17 +2,17 @@
    (:require [clojure.java.jdbc :as sql]))
 
  (def connection-test {:dbtype "postgresql"
-                  :dbname "hs_test"
-                  :host "localhost"
-                  :user "narkotroll"
-                  :password "elfenlied1,"})
+                  :dbname (System/getenv "DB_TEST_NAME")
+                  :host (System/getenv "DB_HOST")
+                  :user (System/getenv "DB_USER")
+                  :password (System/getenv "DB_PASSWORD")})
  
  
  (def connection {:dbtype "postgresql"
-             :dbname "hs"
-             :host "localhost"
-             :user "narkotroll"
-             :password "elfenlied1,"})
+                  :dbname (System/getenv "DB_NAME")
+                  :host (System/getenv "DB_HOST")
+                  :user (System/getenv "DB_USER")
+                  :password (System/getenv "DB_PASSWORD")})
  
  
 (defn migrated? [conn]
