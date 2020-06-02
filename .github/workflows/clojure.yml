@@ -16,6 +16,8 @@ jobs:
     - name: Build the stack
       run: docker-compose up -d 
     - name: Export env variable
-      run : bash ./app/export_env.sh
+      run : |
+        ls -la
+        bash ./app/export_env.sh
     - name: Test  
       run: docker-compose run -e DB_NAME=hs -e DB_TEST_NAME=hs_test -e DB_USER=hs -e DB_PASSWORD=elfenlied1, patientsapp lein test 
