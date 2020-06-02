@@ -7,7 +7,7 @@ services:
       POSTGRES_USER: hs
     image: postgres:12-alpine
     ports:
-    - 5435:5435/tcp
+    - 5435:5432/tcp
     restart: always
     volumes:
     - volume_pg_hs:/var/lib/postgres/data:rw

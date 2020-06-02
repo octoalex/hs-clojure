@@ -12,7 +12,7 @@ spec:
   ports:
   - name: "5435"
     port: 5435
-    targetPort: 5435
+    targetPort: 5432
   selector:
     io.kompose.service: patients-db
 status:

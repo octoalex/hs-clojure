@@ -36,7 +36,7 @@ spec:
         imagePullPolicy: ""
         name: hs-db
         ports:
-        - containerPort: 5435
+        - containerPort: 5432
         resources: {}
         volumeMounts:
         - mountPath: /var/lib/postgres/data

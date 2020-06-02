@@ -11,7 +11,7 @@ services:
     volumes:
         - volume_pg_hs:/var/lib/postgres/data
     ports:
-      - 5435:5435
+      - 5435:5432
   patientsapp:
     container_name: hs_app
     depends_on: 
