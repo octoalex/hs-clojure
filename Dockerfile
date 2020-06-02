@@ -1,8 +1,8 @@
 FROM clojure
 
-COPY . /app
-ADD app.env.example /app/app.env
-WORKDIR /app
+COPY . /
+ADD .env.example /.env
+WORKDIR /
 
 RUN lein deps
 
