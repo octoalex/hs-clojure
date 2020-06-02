@@ -13,5 +13,5 @@ fi
 
 while IFS= read -r line
 do
-  EXPORT $line
+  export $line
 done < "$input"
