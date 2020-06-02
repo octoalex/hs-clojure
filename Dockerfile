@@ -3,7 +3,7 @@ FROM clojure
 WORKDIR /app
 COPY . /app
 
-ADD .env.example .env
+ADD .env.example /app/.env
 
 RUN lein deps
 
