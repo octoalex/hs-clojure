@@ -1,7 +1,7 @@
 FROM clojure
 
-WORKDIR /
-COPY . .
+WORKDIR /app
+COPY . /app
 
 ADD .env.example .env
 
