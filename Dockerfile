@@ -5,8 +5,6 @@ COPY . /app
 
 ADD .env.example .env
 
-RUN ls -la
-
 RUN lein deps
 
 EXPOSE 3000
