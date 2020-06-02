@@ -7,7 +7,6 @@ ADD .env.example /app/.env
 
 RUN lein deps
 RUN lein uberjar
-RUN ls -la 
 
 
 EXPOSE 3000
