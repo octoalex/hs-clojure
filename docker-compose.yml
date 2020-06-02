@@ -2,7 +2,7 @@ version: '3.0'
 services:
   postgres:
     container_name: hs_db
-    env_file: app/.env
+    env_file: .env
     restart: 'always'
     environment:
       - POSTGRES_USER=${DB_USER}
@@ -15,7 +15,7 @@ services:
       - 5432:5432
   patientsapp:
     container_name: hs_app
-    env_file: app/.env
+    env_file: .env
     links:
       - postgres:postgres
     restart: 'always'
