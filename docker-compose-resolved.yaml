@@ -1,0 +1,33 @@
+services:
+  patients-db:
+    container_name: hs_db
+    environment:
+      POSTGRES_DB: hs-patient
+      POSTGRES_PASSWORD: elfenlied1,
+      POSTGRES_USER: hs
+    image: postgres:12-alpine
+    ports:
+    - 5435:5435/tcp
+    restart: always
+    volumes:
+    - volume_pg_hs:/var/lib/postgres/data:rw
+  patientsapp:
+    container_name: hs_app
+    depends_on:
+    - patients-db
+    environment:
+      DB_HOST: patients-db
+      DB_NAME: hs-patient
+      DB_PASSWORD: elfenlied1,
+      DB_PORT: '5435'
+      DB_USER: hs
+    image: octoyomi/patients:0.1.2
+    labels:
+      kompose.service.type: LoadBalancer
+    ports:
+    - 3000:3000/tcp
+    restart: always
+version: '3.0'
+volumes:
+  volume_pg_hs: {}
+

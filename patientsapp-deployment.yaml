@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose-resolved.yaml
+    kompose.service.type: LoadBalancer
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: patientsapp
+  name: patientsapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: patientsapp
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f docker-compose-resolved.yaml
+        kompose.service.type: LoadBalancer
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: patientsapp
+    spec:
+      containers:
+      - env:
+        - name: DB_HOST
+          value: patients-db
+        - name: DB_NAME
+          value: hs-patient
+        - name: DB_PASSWORD
+          value: elfenlied1,
+        - name: DB_PORT
+          value: "5435"
+        - name: DB_USER
+          value: hs
+        image: octoyomi/patients:0.1.2
+        imagePullPolicy: ""
+        name: hs-app
+        ports:
+        - containerPort: 3000
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}

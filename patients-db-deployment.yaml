@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose-resolved.yaml
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: patients-db
+  name: patients-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: patients-db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f docker-compose-resolved.yaml
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: patients-db
+    spec:
+      containers:
+      - env:
+        - name: POSTGRES_DB
+          value: hs-patient
+        - name: POSTGRES_PASSWORD
+          value: elfenlied1,
+        - name: POSTGRES_USER
+          value: hs
+        image: postgres:12-alpine
+        imagePullPolicy: ""
+        name: hs-db
+        ports:
+        - containerPort: 5435
+        resources: {}
+        volumeMounts:
+        - mountPath: /var/lib/postgres/data
+          name: volume-pg-hs
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - name: volume-pg-hs
+        persistentVolumeClaim:
+          claimName: volume-pg-hs
+status: {}

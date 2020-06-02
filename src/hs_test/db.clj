@@ -4,6 +4,7 @@
  (def connection-test {:dbtype "postgresql"
                   :dbname (System/getenv "DB_TEST_NAME")
                   :host (System/getenv "DB_HOST")
+                  :port (System/getenv "DB_PORT")
                   :user (System/getenv "DB_USER")
                   :password (System/getenv "DB_PASSWORD")})
  
@@ -11,6 +12,7 @@
  (def connection {:dbtype "postgresql"
                   :dbname (System/getenv "DB_NAME")
                   :host (System/getenv "DB_HOST")
+                  :port (System/getenv "DB_PORT")
                   :user (System/getenv "DB_USER")
                   :password (System/getenv "DB_PASSWORD")})
  

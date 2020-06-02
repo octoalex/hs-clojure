@@ -1,31 +1,32 @@
 version: '3.0'
 services:
-  postgres:
-    network_mode: host
+  patients-db:
+    image: 'postgres:12-alpine'
     container_name: hs_db
     restart: 'always'
     environment:
       - POSTGRES_USER=${DB_USER}
-      - POSTGRES_MULTIPLE_DATABASES=${DB_NAME},${DB_TEST_NAME}
+      - POSTGRES_DB=${DB_NAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
     volumes:
-        - ./deploy:/docker-entrypoint-initdb.d
-    image: 'postgres:alpine'
+        - volume_pg_hs:/var/lib/postgres/data
     ports:
-      - 5432:5432
+      - 5435:5435
   patientsapp:
     container_name: hs_app
-    links:
-      - postgres:postgres
+    depends_on: 
+      - patients-db
     restart: 'always'
     ports:
       - 3000:3000
     environment:
       - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=postgres
+      - DB_HOST=patients-db
+      - DB_PORT=${DB_PORT}
       - DB_NAME=${DB_NAME}
-      - DB_TEST_NAME=${DB_TEST_NAME}
-      - DB_USER=${DB_PASSWORD}
-    build:
-        context: .
-        dockerfile: Dockerfile  
+      - DB_USER=${DB_USER}
+    image: 'octoyomi/patients:0.1.2' 
+    labels:
+      kompose.service.type: LoadBalancer 
+volumes: 
+  volume_pg_hs:

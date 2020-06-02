@@ -1,0 +1,12 @@
+apiVersion: v1
+data:
+  DB_NAME: hs
+  DB_PASSWORD: elfenlied1,
+  DB_TEST_NAME: hs_test
+  DB_USER: hs
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: patients-db-env
+  name: env
