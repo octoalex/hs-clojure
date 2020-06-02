@@ -1,7 +1,7 @@
 FROM clojure
 
 COPY . /app
-ADD .env.example /app/.env
+ADD app.env.example /app/app.env
 WORKDIR /app
 
 RUN lein deps
