@@ -1,3 +1,5 @@
+![Clojure CI](https://github.com/octoalex/hs-clojure/workflows/Clojure%20CI/badge.svg)
+
 # hs-test
 
 Health Samurai test task for junior clojure developer

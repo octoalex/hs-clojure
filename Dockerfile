@@ -1,8 +1,10 @@
 FROM clojure
 
-WORKDIR /
+COPY . /app
+WORKDIR /app
 
-COPY target/patients.jar patients.jar
+RUN lein deps
+
 EXPOSE 3000
 
-CMD java -jar patients.jar
+CMD java -jar app/patients.jar

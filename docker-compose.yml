@@ -1,6 +1,7 @@
 version: '3.0'
 services:
   postgres:
+    container_name: hs_db
     restart: 'always'
     environment:
       - POSTGRES_USER=${DB_USER}
@@ -12,6 +13,7 @@ services:
     ports:
       - 5432:5432
   patientsapp:
+    container_name: hs_app
     links:
       - postgres
     restart: 'always'
@@ -23,7 +25,6 @@ services:
       - DB_NAME=${DB_NAME}
       - DB_TEST_NAME=${DB_TEST_NAME}
       - DB_USER=${DB_PASSWORD}
-      
     build:
-      context: .
-      dockerfile: Dockerfile
+        context: .
+        dockerfile: Dockerfile  
