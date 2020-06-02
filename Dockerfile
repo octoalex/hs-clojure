@@ -1,5 +1,11 @@
 FROM clojure
 
+ENV DB_NAME=hs
+ENV DB_TEST_NAME=hs_test
+ENV DB_USER=hs
+ENV DB_PASSWORD=elfenlied1,
+
+
 WORKDIR /
 COPY . .
 
