@@ -11,8 +11,6 @@ else
     input="$pwd/.env.example"    
 fi
 
-
-input="$pwd/.env"
 while IFS= read -r line
 do
   echo "EXPORT $line"
