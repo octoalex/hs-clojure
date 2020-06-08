@@ -26,10 +26,13 @@
 
 
 (defn api-patients
-  [conn]
-    {:status  200
-     :headers {"Content-Type" "application/json"}
-     :body    (json/write-str (db/all conn))})
+  [conn request]
+    (let [name (get-in request [:params :name])
+          result (db/all conn name)]
+       {:status  200
+        :headers {"Content-Type" "application/json"}
+        :body    (json/write-str result)}
+      ))
 
 (defn api-patient-delete
   [conn id]
@@ -53,7 +56,7 @@
   (view/index (db/all conn)))
 
 (defn new
-  [conn]
+  []
   (view/new))
 
 

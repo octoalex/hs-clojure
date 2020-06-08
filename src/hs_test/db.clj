@@ -2,7 +2,7 @@
    (:require [clojure.java.jdbc :as sql]))
 
  (def connection-test {:dbtype "postgresql"
-                  :dbname (System/getenv "DB_TEST_NAME")
+                  :dbname "hs_test"
                   :host (System/getenv "DB_HOST")
                   :port (System/getenv "DB_PORT")
                   :user (System/getenv "DB_USER")
@@ -39,8 +39,9 @@
     (println " done \n")))
 
 
-(defn all [conn]
-  (into [] (sql/query conn ["select id,full_name,gender,birthday,address,policy_number from patients order by id desc"])))
+(defn all [conn name]
+  (if name (into [] (sql/query conn ["select id,full_name,gender,birthday,address,policy_number from patients where full_name like ? order by id desc" (str "%" name "%")]))
+      (into [] (sql/query conn ["select id,full_name,gender,birthday,address,policy_number from patients order by id desc"]))))
 
 (defn create [conn patient]
   (sql/insert! conn :patients patient))

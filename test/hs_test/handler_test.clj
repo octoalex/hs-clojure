@@ -8,6 +8,8 @@
 (reset! db-state schema/connection-test)
 
 
+
+
 (deftest test-app
   (testing "main route"
     (let [response (app (mock/request :get "/"))]
@@ -25,6 +27,12 @@
         (is (= (:status response) 200))
         (is (= (:body response) "[]")))
   )
+  
+  (testing "search user by name "
+    (let [response (app (mock/request :get "/api/patients?name=Alex"))]
+      (is (= (:status response) 200))
+      (is (= (:body response) "[]"))))
+  
   (testing "adding patient"
     (app (->
           (mock/request :post "/api/patient")
@@ -36,6 +44,17 @@
      (let [response (app (mock/request :get "/api/patients"))]
        (is (= (:status response) 200))
        (is (= (:body response) "[{\"id\":1,\"full_name\":\"Foo Bar\",\"gender\":1,\"birthday\":\"1995-01-14\",\"address\":\"Moscow\",\"policy_number\":\"1234353465\"}]"))))
+  
+  (testing "search user by name 111"
+    (let [response (app (mock/request :get "/api/patients?name=Foo"))]
+     (is (= (:status response) 200))
+     (is (= (:body response) "[{\"id\":1,\"full_name\":\"Foo Bar\",\"gender\":1,\"birthday\":\"1995-01-14\",\"address\":\"Moscow\",\"policy_number\":\"1234353465\"}]"))))
+  
+  (testing "search user by name dsfsdfsdf"
+    (let [response (app (mock/request :get "/api/patients?name=Alex"))]
+      (is (= (:status response) 200))
+      (is (= (:body response) "[{\"id\":1,\"full_name\":\"Foo Bar\",\"gender\":1,\"birthday\":\"1995-01-14\",\"address\":\"Moscow\",\"policy_number\":\"1234353465\"}]"))))
+  
   (testing "update user"
      (app (->
           (mock/request :post "/api/patient")
