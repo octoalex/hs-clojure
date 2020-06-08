@@ -43,6 +43,4 @@
                                                 :output-to "resources/public/js/app.js"
                                                 :optimizations :advanced
                                                 :pretty-print false
-                                               }}}
-                     :clean-targets ^{:protect false} ["resources/public/js"
-                                                       :target-path]}}})
+                                               }}}}}})

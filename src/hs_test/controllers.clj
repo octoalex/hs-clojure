@@ -53,7 +53,7 @@
   (view/index (db/all conn)))
 
 (defn new
-  []
+  [conn]
   (view/new))
 
 
